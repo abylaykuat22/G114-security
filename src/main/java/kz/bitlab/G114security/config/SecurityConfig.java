@@ -13,8 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity
-@EnableMethodSecurity
+@EnableWebSecurity // активирует конфигурационный класс security
+@EnableMethodSecurity // активирует возможность использовать аннотацию @PreAuthorize
 public class SecurityConfig {
 
   @Bean
@@ -23,7 +23,7 @@ public class SecurityConfig {
   }
 
   @Bean
-  public PasswordEncoder passwordEncoder() {
+  public PasswordEncoder passwordEncoder() { // чтобы работать с зашифрованными паролями
     return new BCryptPasswordEncoder();
   }
 
