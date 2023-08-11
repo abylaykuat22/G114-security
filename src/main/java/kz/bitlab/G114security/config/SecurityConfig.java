@@ -42,7 +42,7 @@ public class SecurityConfig {
         .usernameParameter("user_email") // данные почты введенные с фронта
         .passwordParameter("user_password") // данные пароля введенные с фронта
         .loginPage("/sign-in") // страница где происходит аутентификация
-        .defaultSuccessUrl("/") // endpoint при успешной аутентификации
+        .defaultSuccessUrl("/profile", true) // endpoint при успешной аутентификации, true - чтобы активировать
         .failureUrl("/sign-in?error")); // endpoint при не успешной аутентификации
 
     http.logout(logout -> logout.logoutUrl("/logout")

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1  th:if="${param.currentPasswordError != null}" style="color: red">INCORRECT CURRENT PASSWORD. TRY AGAIN!</h1>
+<h1  th:if="${param.passwordsError != null}" style="color: red">PASSWORDS ARE NOT SAME!</h1>
+<h1  th:if="${param.success != null}" style="color: green">PASSWORD UPDATED SUCCESSFULLY!</h1>
+<h1 sec:authorize="hasAnyRole('ROLE_MANAGER')">ЭТО ВИДИТ ТОЛЬКО АДМИН</h1>
+<h1 th:text="${#authentication.principal.fullName}"></h1>
+<form th:action="@{'/update-password'}" method="post">
+  <input type="password" name="currentPassword" placeholder="CURRENT PASSWORD"><br>
+  <input type="password" name="newPassword" placeholder="NEW PASSWORD"><br>
+  <input type="password" name="reNewPassword" placeholder="RETYPE NEW PASSWORD"><br>
+  <button>UPDATE PASSWORD</button>
+</form>
+</body>
+</html>

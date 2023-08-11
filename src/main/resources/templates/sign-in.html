@@ -5,10 +5,12 @@
   <title>Title</title>
 </head>
 <body>
+<h1  th:if="${param.success != null}" style="color: green">U ARE CREATED NEW ACCOUNT!</h1>
 <form th:action="@{'/auth'}" method="post">
   <input type="email" name="user_email" placeholder="EMAIL"><br>
   <input type="password" name="user_password" placeholder="PASSWORD"><br>
   <button>SIGN IN</button>
+  <a th:href="@{'/register'}">SIGN UP</a>
 </form>
 </body>
 </html>
