@@ -33,19 +33,18 @@ public class UserService implements UserDetailsService {
     return user;
   }
 
-  public String addUser(User newUser, String rePassword) {
+  public User addUser(User newUser, String rePassword) {
     User checkUser = userRepository.findByEmail(newUser.getEmail());
     if (checkUser != null) {
-      return "register?emailError";
+      return null;
     }
     if (!newUser.getPassword().equals(rePassword)) {
-      return "register?passwordsError";
+      return null;
     }
     newUser.setPassword(passwordEncoder.encode(rePassword));
     Role userRole = roleRepository.findRoleUser();
     newUser.setRoles(List.of(userRole));
-    userRepository.save(newUser);
-    return "sign-in?success";
+    return userRepository.save(newUser);
   }
 
   public User getCurrentUser() {

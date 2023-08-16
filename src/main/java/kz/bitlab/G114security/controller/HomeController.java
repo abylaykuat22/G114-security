@@ -39,12 +39,12 @@ public class HomeController {
     return "sign-up";
   }
 
-  @PreAuthorize("isAnonymous()")
-  @PostMapping("/register")
-  public String register(User user, @RequestParam String rePassword) {
-    String result = userService.addUser(user, rePassword);
-    return "redirect:/"+result;
-  }
+//  @PreAuthorize("isAnonymous()")
+//  @PostMapping("/register")
+//  public String register(User user, @RequestParam String rePassword) {
+////    String result = userService.addUser(user, rePassword);
+//    return "redirect:/"+result;
+//  }
 
   @PreAuthorize("isAuthenticated()")
   @PostMapping("/update-password")
