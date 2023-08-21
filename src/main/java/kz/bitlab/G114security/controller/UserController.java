@@ -1,7 +1,9 @@
 package kz.bitlab.G114security.controller;
 
-import java.io.PrintWriter;
 import java.util.List;
+import kz.bitlab.G114security.dto.UserCreate;
+import kz.bitlab.G114security.dto.UserUpdate;
+import kz.bitlab.G114security.dto.UserView;
 import kz.bitlab.G114security.models.User;
 import kz.bitlab.G114security.repository.UserRepository;
 import kz.bitlab.G114security.services.UserService;
@@ -25,24 +27,23 @@ public class UserController {
   private UserRepository userRepository;
 
   @GetMapping
-  public List<User> getUsers() {
-    return userRepository.findAll();
+  public List<UserView> getUsers() {
+    return userService.getAllUsers();
   }
 
   @GetMapping("{id}")
-  public User getUser(@PathVariable Long id) {
-    return userRepository.findById(id).orElse(null);
+  public UserView getUser(@PathVariable Long id) {
+    return userService.getUserById(id);
   }
 
   @PostMapping
-  public User addUser(@RequestBody User user,
-      @RequestParam(name = "re_password") String rePassword) {
-    return userService.addUser(user, rePassword);
+  public UserView addUser(@RequestBody UserCreate userCreate) {
+    return userService.addUser(userCreate);
   }
 
   @PutMapping
-  public User editUser(@RequestBody User user) {
-    return userRepository.save(user);
+  public User editUser(@RequestBody UserUpdate userUpdate) {
+    return userService.editUser(userUpdate);
   }
 
   @DeleteMapping("{id}")
